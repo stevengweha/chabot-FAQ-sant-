@@ -2,7 +2,7 @@
 Titre du Projet : Chatbot FAQ pour la Santé Mentale (basé sur un Dataset existant)
 
 Description du Projet :
-Ce projet a pour objectif de développer un chatbot intelligent qui s’appuie sur un dataset existant contenant des questions et réponses sur la santé mentale. Ce chatbot sera conçu pour fournir des réponses instantanées, fiables et accessibles, afin de répondre aux préoccupations des utilisateurs en matière de santé mentale.
+Ce projet a pour objectif de développer un chatbot intelligent qui s’appuie sur un dataset existant contenant des questions et réponses sur la santé . Ce chatbot sera conçu pour fournir des réponses instantanées, fiables et accessibles, afin de répondre aux préoccupations des utilisateurs en matière de santé .
 
 Le chatbot vise à :
 

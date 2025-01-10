@@ -1,3 +1,4 @@
+###creation de l'API flask pour tester nos données via postman
 from flask import Flask, request, jsonify
 import joblib
 

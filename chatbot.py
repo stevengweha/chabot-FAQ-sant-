@@ -40,3 +40,6 @@ def predict():
 # Lancer l'application Flask
 if __name__ == '__main__':
     app.run(debug=True)
+    # Lancer le serveur Flask
+    Timer(10, stop_flask).start()  # Arrêter après 10 secondes
+    app.run(debug=True, use_reloader=False)  # use_reloader=False pour éviter que Flask ne r

@@ -38,8 +38,12 @@ def predict():
         return jsonify({"error": str(e)}), 500
 
 # Lancer l'application Flask
-if __name__ == '__main__':
-    app.run(debug=True)
-    # Lancer le serveur Flask
-    Timer(10, stop_flask).start()  # Arrêter après 10 secondes
-    app.run(debug=True, use_reloader=False)  # use_reloader=False pour éviter que Flask ne r
+def stop_flask():
+    print("Arrêt du serveur Flask")
+    os.kill(os.getpid(), signal.SIGINT)  # Envoie un signal SIGINT (équivalent à CTRL+C)
+
+if __name__ == "__main__":
+    # Lancer Flask
+    app_process = app.run(debug=True, use_reloader=False)  # Lance Flask
+    time.sleep(10)  # Attend 10 secondes
+    stop_flask()  # Arrête le serveur Flask

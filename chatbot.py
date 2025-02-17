@@ -1,6 +1,9 @@
-###creation de l'API flask pour tester nos données via postman
 from flask import Flask, request, jsonify
 import joblib
+import time
+import os
+import signal
+from multiprocessing import Process
 
 app = Flask(__name__)
 
@@ -37,13 +40,20 @@ def predict():
         # Gérer les erreurs
         return jsonify({"error": str(e)}), 500
 
-# Lancer l'application Flask
-def stop_flask():
-    print("Arrêt du serveur Flask")
-    os.kill(os.getpid(), signal.SIGINT)  # Envoie un signal SIGINT (équivalent à CTRL+C)
+# Lancer Flask dans un sous-processus
+def run_flask():
+    app.run(debug=True, use_reloader=False)  # Lancer le serveur Flask
+
+# Arrêter Flask après un délai
+def stop_flask(process):
+    time.sleep(10)  # Attend 10 secondes
+    print("Arrêt du serveur Flask après 10 secondes.")
+    process.terminate()  # Arrêter le processus Flask proprement
 
 if __name__ == "__main__":
-    # Lancer Flask
-    app_process = app.run(debug=True, use_reloader=False)  # Lance Flask
-    time.sleep(10)  # Attend 10 secondes
-    stop_flask()  # Arrête le serveur Flask
+    # Lancer Flask dans un sous-processus
+    flask_process = Process(target=run_flask)
+    flask_process.start()
+
+    # Arrêter Flask après un délai
+    stop_flask(flask_process)
